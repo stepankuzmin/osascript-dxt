@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server/index.js",
+    "test": "dxt validate manifest.json",
     "build": "dxt pack"
   },
   "dependencies": {
