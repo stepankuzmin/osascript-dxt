@@ -10,16 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/k6l3/osascript-dxt"
+    "url": "https://github.com/stepankuzmin/osascript-dxt"
   },
-  "homepage": "https://github.com/k6l3/osascript-dxt",
-  "documentation": "https://github.com/k6l3/osascript-dxt",
-  "support": "https://github.com/k6l3/osascript-dxt/issues",
+  "homepage": "https://github.com/stepankuzmin/osascript-dxt",
+  "documentation": "https://github.com/stepankuzmin/osascript-dxt",
+  "support": "https://github.com/stepankuzmin/osascript-dxt/issues",
   "icon": "icon.png",
-  "scripts": {
-    "start": "node server/index.js",
-    "build": "npx @anthropic-ai/dxt pack"
-  },
   "server": {
     "type": "node",
     "entry_point": "server/index.js",
@@ -42,8 +38,5 @@
     "applescript",
     "osascript"
   ],
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.6.0"
-  },
   "license": "MIT"
 }

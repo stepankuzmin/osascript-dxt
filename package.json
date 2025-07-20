@@ -4,9 +4,13 @@
   "description": "Execute osascript",
   "type": "module",
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "build": "dxt pack"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.6.0"
+    "@modelcontextprotocol/sdk": "^1.16.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/dxt": "^0.2.5"
   }
 }
