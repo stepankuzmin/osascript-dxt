@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/index.js",
     "test": "dxt validate manifest.json",
-    "build": "dxt pack"
+    "build": "dxt pack",
+    "sign": "dxt sign --self-signed osascript-dxt.dxt"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.16.0"

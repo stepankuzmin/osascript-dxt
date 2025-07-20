@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npx @anthropic-ai/dxt sign:*)",
+      "Bash(npx:*)"
+    ],
+    "deny": []
+  }
+}

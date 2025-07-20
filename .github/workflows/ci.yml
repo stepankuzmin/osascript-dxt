@@ -65,6 +65,9 @@ jobs:
     - name: Build DXT package
       run: npm run build
 
+    - name: Sign DXT package
+      run: npm run sign
+
     - name: Get short SHA
       id: sha
       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
