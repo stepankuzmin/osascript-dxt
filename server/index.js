@@ -1,25 +1,22 @@
 #!/usr/bin/env node
 
+import { promisify } from "util";
+import { execFile } from "child_process";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from "@modelcontextprotocol/sdk/types.js";
-import { execFile } from "child_process";
-import { promisify } from "util";
+import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 
 const execFileAsync = promisify(execFile);
 
 // Constants
-const OSASCRIPT_TIMEOUT = 30000;
+const OSASCRIPT_TIMEOUT = 30_000;
 
 class OsascriptServer {
   constructor() {
     this.server = new Server(
       {
         name: "osascript",
-        version: "0.0.1",
+        version: "0.0.2",
       },
       {
         capabilities: {

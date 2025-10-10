@@ -1,20 +1,16 @@
 {
-  "dxt_version": "0.1",
-  "name": "Control your Mac",
-  "version": "0.0.1",
-  "description": "Execute AppleScript to automate tasks on macOS.",
+  "manifest_version": "0.2",
+  "name": "macos",
+  "display_name": "macOS",
+  "version": "1.0.0",
+  "description": "Execute AppleScript to automate tasks on macOS",
   "long_description": "This tool allows you to execute AppleScript commands using `osascript`, enabling automation of tasks on macOS systems. Try asking Claude to do things on your Mac, like controlling applications or changing system settings.",
   "author": {
     "name": "Stepan Kuzmin",
+    "email": "533564+stepankuzmin@users.noreply.github.com",
     "url": "https://stepankuzmin.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stepankuzmin/osascript-dxt"
-  },
-  "homepage": "https://github.com/stepankuzmin/osascript-dxt",
-  "documentation": "https://github.com/stepankuzmin/osascript-dxt",
-  "support": "https://github.com/stepankuzmin/osascript-dxt/issues",
+  "homepage": "https://github.com/stepankuzmin/macos-mcpb",
   "icon": "icon.png",
   "server": {
     "type": "node",
@@ -34,9 +30,14 @@
     }
   ],
   "keywords": [
-    "mcp",
+    "macos",
+    "osx",
     "applescript",
     "osascript"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stepankuzmin/macos-mcpb"
+  }
 }

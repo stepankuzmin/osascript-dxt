@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [ main ]
+    tags: ['*']
   pull_request:
     branches: [ main ]
 
@@ -16,8 +17,9 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
         cache: 'npm'
+        node-version: '22'
+        cache-dependency-path: 'package-lock.json'
 
     - name: Install dependencies
       run: npm ci
@@ -34,17 +36,18 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
         cache: 'npm'
+        node-version: '22'
+        cache-dependency-path: 'package-lock.json'
 
     - name: Install dependencies
       run: npm ci
 
-    - name: Build DXT package
+    - name: Build package
       run: npm run build
 
   release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
     needs: [test, build]
     runs-on: ubuntu-latest
     permissions:
@@ -56,30 +59,38 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
         cache: 'npm'
+        node-version: '22'
+        cache-dependency-path: 'package-lock.json'
 
     - name: Install dependencies
       run: npm ci
 
-    - name: Build DXT package
+    - name: Build package
       run: npm run build
 
-    - name: Sign DXT package
+    - name: Sign package
       run: npm run sign
 
-    - name: Get short SHA
-      id: sha
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    - name: Get version
+      id: version
+      run: |
+        if [ "${{ github.ref_type }}" == "tag" ]; then
+          echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "has_tag=true" >> $GITHUB_OUTPUT
+        else
+          echo "version=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "has_tag=false" >> $GITHUB_OUTPUT
+        fi
 
     - name: Create Release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create "${{ steps.sha.outputs.sha_short }}" \
-          --title "Release ${{ steps.sha.outputs.sha_short }}" \
+        gh release create "${{ steps.version.outputs.version }}" \
+          --title "Release ${{ steps.version.outputs.version }}" \
           --notes "Automated release for commit ${{ github.sha }}
 
         **Commit**: ${{ github.event.head_commit.message }}" \
-          --prerelease \
-          osascript-dxt.dxt
+          ${{ steps.version.outputs.has_tag == 'false' && '--prerelease' || '' }} \
+          macos.mcpb

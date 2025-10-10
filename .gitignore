@@ -1,2 +1,4 @@
-*.dxt
-node_modules*
+*.mcpb
+.claude/settings.local.json
+
+node_modules/

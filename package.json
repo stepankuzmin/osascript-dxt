@@ -1,18 +1,18 @@
 {
-  "name": "osascript",
-  "version": "0.0.1",
-  "description": "Execute osascript",
+  "name": "macos-mcp",
+  "version": "0.0.2",
+  "description": "Execute AppleScript commands on macOS using osascript",
   "type": "module",
   "scripts": {
     "start": "node server/index.js",
-    "test": "dxt validate manifest.json",
-    "build": "dxt pack",
-    "sign": "dxt sign --self-signed osascript-dxt.dxt"
+    "test": "mcpb validate manifest.json",
+    "build": "mcpb pack . macos.mcpb && mcpb clean macos.mcpb",
+    "sign": "mcpb sign --self-signed macos.mcpb"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.16.0"
+    "@modelcontextprotocol/sdk": "^1.20.0"
   },
   "devDependencies": {
-    "@anthropic-ai/dxt": "^0.2.5"
+    "@anthropic-ai/mcpb": "^1.1.1"
   }
 }
